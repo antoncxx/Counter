@@ -40,4 +40,4 @@ A: Sure, but the bot will out-commit you. It's not personal. It's just more comm
 
 ## License
 
-Do whatever you want. It's a number.
+[MIT](LICENSE). Do whatever you want. It's a number.
