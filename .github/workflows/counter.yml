@@ -1,0 +1,26 @@
+name: Midnight Counter
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # every day at 00:00 UTC
+  workflow_dispatch: # manual trigger, for the impatient
+
+permissions:
+  contents: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Increment the counter
+        run: echo $(( $(cat counter.txt) + 1 )) > counter.txt
+
+      - name: Commit straight to main
+        run: |
+          git config user.name "Anton Liashkevich"
+          git config user.email "anton.liashkevich.eng@gmail.com"
+          git add counter.txt
+          git commit -m "chore: counter is now $(cat counter.txt) 🌱"
+          git push origin HEAD:main
